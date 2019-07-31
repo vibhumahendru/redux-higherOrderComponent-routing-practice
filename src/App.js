@@ -1,14 +1,20 @@
 // import React from 'react';
 import logo from './logo.svg';
 import './App.css';
-import Click from './components/click.js'
+
 import {connect} from 'react-redux'
 import React, { Component } from 'react';
+import {BrowserRouter as Router, Route, Link} from 'react-router-dom'
+import Click from './components/click.js'
+import Test from './components/test.js'
 
 
 // <h1>{this.props.count}</h1>
 class App extends Component {
 
+componentDidMount(){
+  console.log("sup")
+}
 
   handleIncrement=()=>{
     this.props.incCount()
@@ -20,15 +26,24 @@ class App extends Component {
     this.props.changeName(event.target.value)
   }
 
-  render() {
 
+
+  render() {
+    console.log(this.props);
     return (
+      <Router>
+      <>
+      <Route path='/test' exact component={Test} />
+
       <div>
       <h1 onClick={this.handleIncrement}>{this.props.count}</h1>
       <h2>{this.props.name}</h2>
       <input onChange={(event)=>this.handleName(event)} placeholder="testtt"></input>
       <Click/>
+      yoppoppp
       </div>
+      </>
+      </Router>
     );
   }
 }
